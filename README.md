@@ -13,7 +13,7 @@ If you are in this situation:
 command not found: node
 ```
 
-You need to install Node:
+You need to install Node, especially a stable version `>12`:
 
 ```
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
@@ -22,7 +22,7 @@ sudo apt-get install -y nodejs
 
 ```
 ➜  hawkbot-frontend git:(main) node -v
-v18.6.0
+v16.16.0
 ```
 
 ### Yarn
@@ -49,8 +49,6 @@ sudo apt update && sudo apt install yarn
 1.22.19
 ```
 
-This will also install Node if you don't have it.
-
 ## Usage
 
 ```
@@ -72,3 +70,17 @@ and then finally:
 ```
 serve -s build
 ```
+
+You will need an SSH tunnel:
+
+```
+ssh -L 3000:127.0.0.1:3000 <user>@<ip>
+```
+
+also for the backend:
+
+```
+ssh -L 9996:127.0.0.1:9996 <user>@<ip>
+```
+
+then in your browser you can go to `localhost:3000/`
