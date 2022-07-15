@@ -4,6 +4,27 @@ Hawkbot-frontend is a UI built to operate with Hawkbot.
 
 ## Prerequisite
 
+### Node
+
+If you are in this situation:
+
+```
+➜  hawkbot-frontend git:(main) node -v
+command not found: node
+```
+
+You need to install Node:
+
+```
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+```
+➜  hawkbot-frontend git:(main) node -v
+v18.6.0
+```
+
 ### Yarn
 
 If you are in this situation:
