@@ -80,7 +80,7 @@ ssh -L 3000:127.0.0.1:3000 <user>@<ip>
 also for the backend:
 
 ```
-ssh -L 9996:127.0.0.1:9996 <user>@<ip>
+ssh -L 6969:127.0.0.1:6969 <user>@<ip>
 ```
 
 then in your browser you can go to `localhost:3000/`

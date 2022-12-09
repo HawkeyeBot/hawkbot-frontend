@@ -19,7 +19,7 @@ import { useEffect } from "react";
 // ----------------------------------------------------------------------
 
 const INTERVAL_FETCH = 10000; // 10 seconds
-const REST_URL = "http://localhost:9996/all";
+const REST_URL = "http://localhost:6969/all";
 
 export default function App() {
   const setDataRecoil = useSetRecoilState(dataAtom);
