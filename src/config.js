@@ -10,8 +10,8 @@ export const HEADER = {
 
 export const NAVBAR = {
   BASE_WIDTH: 260,
-  DASHBOARD_WIDTH: 280,
-  DASHBOARD_COLLAPSE_WIDTH: 88,
+  DASHBOARD_WIDTH: 220,
+  DASHBOARD_COLLAPSE_WIDTH: 130,
   //
   DASHBOARD_ITEM_ROOT_HEIGHT: 48,
   DASHBOARD_ITEM_SUB_HEIGHT: 40,
@@ -30,7 +30,7 @@ export const ICON = {
 export const defaultSettings = {
   themeMode: "dark",
   themeDirection: "ltr",
-  themeColorPresets: "purple",
+  themeColorPresets: "cyan",
   themeLayout: "horizontal",
-  themeStretch: false,
+  themeStretch: true,
 };

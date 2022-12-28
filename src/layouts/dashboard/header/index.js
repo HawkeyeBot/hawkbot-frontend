@@ -59,7 +59,7 @@ export default function DashboardHeader({ onOpenSidebar, isCollapse = false, ver
   const isDesktop = useResponsive("up", "lg");
 
   return (
-    <RootStyle className="BITCH" isCollapse={isCollapse} isOffset={isOffset} verticalLayout={verticalLayout}>
+    <RootStyle isCollapse={isCollapse} isOffset={isOffset} verticalLayout={verticalLayout}>
       <Toolbar
         sx={{
           height: "10px !important",

@@ -17,11 +17,11 @@ export default function OverviewPage() {
     <Page title="Overview">
       <Container maxWidth={themeStretch ? false : "xl"}>
         <Grid container spacing={3}>
-          <Grid item xs={8}>
+          <Grid item xs={9}>
             <WidgetPositions />
           </Grid>
 
-          <Grid item xs={6} md={6} lg={4}>
+          <Grid item xs={6} md={6} lg={2.8}>
             <WidgetOrder />
           </Grid>
         </Grid>

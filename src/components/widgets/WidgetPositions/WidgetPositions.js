@@ -15,7 +15,7 @@ export default function WidgetPositions() {
   return (
     <>
       <Card>
-        <CardHeader title="Positions" sx={{ mb: 3 }} />
+        <CardHeader title="Positions" sx={{ mb: 1 }} />
         <Scrollbar>
           <TableContainer sx={{ minWidth: 720 }}>
             <Table size="small">
