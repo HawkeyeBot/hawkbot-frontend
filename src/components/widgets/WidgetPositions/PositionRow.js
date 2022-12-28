@@ -22,22 +22,15 @@ import { dataAtom } from "src/recoil/atoms";
 
 const PositionRow = ({ symbol, side, positionSides }) => {
   const theme = useTheme();
+  const isLight = theme.palette.mode === "light";
+
   const { open_orders } = useRecoilValue(dataAtom);
   const [open, setOpen] = useState(false);
 
-  const isLight = theme.palette.mode === "light";
-
+  const { cost, entry_price, position_size, current_price, mode } = positionSides && positionSides[side];
   const symbolOpenOrders = open_orders[symbol].filter((order) => order?.position_side === side);
-
-  const dca_number = symbolOpenOrders.filter((order) => order?.client_id.includes("DCA")).length;
-  const tp_number = symbolOpenOrders.filter((order) => order?.client_id.includes("TP")).length;
-  const {
-    cost = "-",
-    entry_price = "-",
-    position_size = "-",
-    current_price = "-",
-    mode,
-  } = positionSides && positionSides[side];
+  const dca_number = symbolOpenOrders.filter((order) => order?.order_type_identifier === "DCA").length;
+  const tp_number = symbolOpenOrders.filter((order) => order?.order_type_identifier === "TP").length;
 
   return (
     <>
@@ -56,10 +49,10 @@ const PositionRow = ({ symbol, side, positionSides }) => {
           </Stack>
         </TableCell>
 
-        <TableCell>{cost}</TableCell>
+        <TableCell>{cost.slice(0, 5)}</TableCell>
         <TableCell>{position_size}</TableCell>
-        <TableCell>{entry_price}</TableCell>
-        <TableCell>{current_price}</TableCell>
+        <TableCell>{entry_price.slice(0, 5)}</TableCell>
+        <TableCell>{current_price.slice(0, 5)}</TableCell>
 
         <TableCell>
           <Label variant={isLight ? "ghost" : "filled"}>{tp_number}</Label>
@@ -67,7 +60,7 @@ const PositionRow = ({ symbol, side, positionSides }) => {
         <TableCell>
           <Label
             variant={isLight ? "ghost" : "filled"}
-            color={dca_number > 1 ? "default" : dca_number === 1 ? "warning" : "error"}
+            color={dca_number > 1 || position_size < 1 ? "default" : dca_number === 1 ? "warning" : "error"}
           >
             {dca_number}
           </Label>
@@ -75,17 +68,15 @@ const PositionRow = ({ symbol, side, positionSides }) => {
         <TableCell>{mode}</TableCell>
       </TableRow>
 
+      {/* Table for the Open Orders */}
       <TableRow>
-        <TableCell colSpan={8}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Open orders
-              </Typography>
+            <Box sx={{ margin: 0 }}>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Kind</TableCell>
+                    <TableCell>Open Order Type</TableCell>
                     <TableCell>Cost</TableCell>
                     <TableCell align="right">Price</TableCell>
                     <TableCell align="right">Quantity</TableCell>
@@ -96,13 +87,13 @@ const PositionRow = ({ symbol, side, positionSides }) => {
                 <TableBody>
                   {symbolOpenOrders
                     .sort((order1, order2) => order2.price - order1.price)
-                    .map(({ id, order_type_identifier, position_side, quantity, side, type, cost, price }) => (
+                    .map(({ id, order_type_identifier, quantity, side, type, cost, price }) => (
                       <TableRow key={id}>
                         <TableCell component="th" scope="row">
                           {order_type_identifier}
                         </TableCell>
-                        <TableCell>{cost}</TableCell>
-                        <TableCell align="right">{price}</TableCell>
+                        <TableCell>{cost.slice(0, 5)}</TableCell>
+                        <TableCell align="right">{price.slice(0, 5)}</TableCell>
                         <TableCell align="right">{quantity}</TableCell>
                         <TableCell align="right">{type}</TableCell>
                         <TableCell align="right">

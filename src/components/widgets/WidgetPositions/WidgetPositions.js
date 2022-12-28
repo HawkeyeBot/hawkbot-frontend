@@ -18,10 +18,12 @@ export default function WidgetPositions() {
         <CardHeader title="Positions" sx={{ mb: 3 }} />
         <Scrollbar>
           <TableContainer sx={{ minWidth: 720 }}>
-            <Table>
+            <Table size="small">
               <TableHead>
                 <TableRow>
+                  {/* For the arrow */}
                   <TableCell />
+
                   <TableCell sx={{ minWidth: 40 }}>Symbol</TableCell>
                   <TableCell sx={{ minWidth: 40 }}>Cost</TableCell>
                   <TableCell sx={{ minWidth: 40 }}>Size</TableCell>
@@ -32,6 +34,7 @@ export default function WidgetPositions() {
                   <TableCell sx={{ minWidth: 40 }}>Mode</TableCell>
                 </TableRow>
               </TableHead>
+
               <TableBody>
                 {Object.keys(positions).map((symbol) => {
                   const positionSides = positions[symbol];
