@@ -1,5 +1,5 @@
 // @mui
-import { Card, Typography, CardHeader, CardContent } from "@mui/material";
+import { Card, Typography, CardHeader, CardContent, Stack } from "@mui/material";
 import {
   Timeline,
   TimelineDot,
@@ -57,12 +57,17 @@ function OrderItem({ order, isLast }) {
         {isLast ? null : <TimelineConnector />}
       </TimelineSeparator>
       <TimelineContent>
-        <Typography display="inline" variant="subtitle2">
-          {order_type_identifier} {quantity}{" "}
-        </Typography>
-        <Typography display="inline" variant="subtitle2" color={position_side === "LONG" ? "#54D62C" : "error"}>
-          {symbol}
-        </Typography>
+        <Stack direction="row" spacing={0.5}>
+          <Typography display="inline" variant="subtitle2">
+            {order_type_identifier}
+          </Typography>
+          <Typography display="inline" variant="subtitle2" color={position_side === "LONG" ? "#54D62C" : "error"}>
+            {symbol}
+          </Typography>
+          <Typography display="inline" variant="subtitle2">
+            {quantity}
+          </Typography>
+        </Stack>
 
         <Typography display="block" variant="caption" sx={{ color: "text.secondary" }}>
           {fDateTime(event_time)}
