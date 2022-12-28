@@ -18,7 +18,7 @@ import { useEffect } from "react";
 
 // ----------------------------------------------------------------------
 
-const INTERVAL_FETCH = 10000; // 10 seconds
+const INTERVAL_FETCH = 5000; // 5 seconds
 const REST_URL = "http://localhost:6969/all";
 
 export default function App() {
