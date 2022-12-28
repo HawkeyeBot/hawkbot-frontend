@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 // @mui
 import { styled } from "@mui/material/styles";
-import { Box, Stack, AppBar, Toolbar } from "@mui/material";
+import { Stack, AppBar, Toolbar } from "@mui/material";
 // hooks
 import useOffSetTop from "../../../hooks/useOffSetTop";
 import useResponsive from "../../../hooks/useResponsive";
@@ -14,8 +14,7 @@ import Logo from "../../../components/Logo";
 import Iconify from "../../../components/Iconify";
 import { IconButtonAnimate } from "../../../components/animate";
 //
-// import LanguagePopover from "./LanguagePopover";
-import BotStatus from "../navbar/BotStatus";
+import GlobalInformations from "./GlobalInformations";
 
 // ----------------------------------------------------------------------
 
@@ -74,11 +73,13 @@ export default function DashboardHeader({ onOpenSidebar, isCollapse = false, ver
           </IconButtonAnimate>
         )}
 
-        <Box sx={{ flexGrow: 1 }} />
-
-        <Stack direction="row" alignItems="center">
-          <BotStatus />
-          {/* <LanguagePopover /> */}
+        <Stack
+          sx={{ marginTop: 2, width: "100%" }}
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <GlobalInformations />
         </Stack>
       </Toolbar>
     </RootStyle>
