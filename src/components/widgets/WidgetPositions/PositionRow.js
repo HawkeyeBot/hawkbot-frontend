@@ -19,6 +19,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useRecoilValue } from "recoil";
 import Label from "src/components/Label";
 import { dataAtom } from "src/recoil/atoms";
+import ModeSelector from "./ModeSelector";
 
 const PositionRow = ({ symbol, side, positionSides }) => {
   const theme = useTheme();
@@ -65,7 +66,9 @@ const PositionRow = ({ symbol, side, positionSides }) => {
             {dca_number}
           </Label>
         </TableCell>
-        <TableCell>{mode}</TableCell>
+        <TableCell>
+          <ModeSelector currentMode={mode} symbol={symbol} position_side={side} />
+        </TableCell>
       </TableRow>
 
       {/* Table for the Open Orders */}
