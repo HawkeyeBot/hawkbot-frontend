@@ -18,7 +18,7 @@ export default function ModeSelector({ currentMode, symbol, position_side }) {
   const [openConfirmation, setOpenConfirmation] = useState(false);
 
   const setErrorRecoil = useSetRecoilState(errorAtom);
-  const [msg, sendNotification] = useNotification();
+  const [sendNotification] = useNotification();
 
   const setUpdatedModeOnServer = (requestedMode, previousMode) => {
     axios
