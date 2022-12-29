@@ -8,6 +8,7 @@ import Select from "@mui/material/Select";
 
 import { MODES } from "./constants";
 import ValidationPopup from "./ValidationPopup";
+import useNotification from "src/components/alerts/hook";
 
 const REST_URL = "http://localhost:6969/setMode";
 
@@ -17,6 +18,7 @@ export default function ModeSelector({ currentMode, symbol, position_side }) {
   const [openConfirmation, setOpenConfirmation] = useState(false);
 
   const setErrorRecoil = useSetRecoilState(errorAtom);
+  const [msg, sendNotification] = useNotification();
 
   const setUpdatedModeOnServer = (requestedMode, previousMode) => {
     axios
@@ -25,8 +27,18 @@ export default function ModeSelector({ currentMode, symbol, position_side }) {
         mode: requestedMode,
         position_side,
       })
+      .then((response) => {
+        sendNotification({
+          msg: `Your mode was correctly set to ${requestedMode} for ${symbol} ${position_side}`,
+          variant: "success",
+        });
+      })
       .catch((err) => {
         setErrorRecoil(err);
+        sendNotification({
+          msg: `Something wrong happened when setting ${symbol} ${position_side} to ${requestedMode}`,
+          variant: "error",
+        });
         setMode(previousMode);
       });
   };

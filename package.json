@@ -48,6 +48,7 @@
     "framer-motion": "^4.1.17",
     "history": "^5.2.0",
     "lodash": "^4.17.21",
+    "notistack": "^2.0.8",
     "nprogress": "^0.2.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.7.2",

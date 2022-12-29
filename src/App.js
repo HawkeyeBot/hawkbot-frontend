@@ -13,6 +13,7 @@ import MotionLazyContainer from "./components/animate/MotionLazyContainer";
 // utils
 import { useSetRecoilState } from "recoil";
 import { dataAtom, loadingAtom, errorAtom } from "./recoil/atoms";
+import { SnackbarProvider } from "notistack";
 import axios from "axios";
 import { useEffect } from "react";
 
@@ -58,7 +59,9 @@ export default function App() {
             <ProgressBarStyle />
             <Settings />
             <ScrollToTop />
-            <Router />
+            <SnackbarProvider maxSnack={3}>
+              <Router />
+            </SnackbarProvider>
           </MotionLazyContainer>
         </RtlLayout>
       </ThemeColorPresets>
