@@ -1,21 +1,51 @@
 // @mui
-import { Card, Table, TableRow, TableBody, TableCell, TableHead, CardHeader, TableContainer } from "@mui/material";
+import {
+  Card,
+  Table,
+  TableRow,
+  TableBody,
+  TableCell,
+  TableHead,
+  CardHeader,
+  TableContainer,
+  Switch,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 // Components
 import Scrollbar from "../../Scrollbar";
 import { useRecoilValue } from "recoil";
 import { dataAtom } from "src/recoil/atoms";
 import PositionRow from "./PositionRow";
+import { useState } from "react";
+import { isEmpty } from "lodash";
 
 // ----------------------------------------------------------------------
 
 export default function WidgetPositions() {
+  const [showInactivePositions, setShowInactivePositions] = useState(true);
   const { positions } = useRecoilValue(dataAtom);
 
   return (
     <>
       <Card>
-        <CardHeader title="Positions" sx={{ mb: 1 }} />
+        <CardHeader
+          title="Positions"
+          sx={{ mb: 1 }}
+          action={
+            <Stack direction="row" alignItems="center">
+              <Switch
+                size="small"
+                checked={showInactivePositions}
+                onChange={(e) => setShowInactivePositions(e.target.checked)}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+              <Typography variant="subtitle2">Show inactive positions</Typography>
+            </Stack>
+          }
+        />
+
         <Scrollbar>
           <TableContainer sx={{ minWidth: 720 }}>
             <Table size="small">
@@ -40,6 +70,11 @@ export default function WidgetPositions() {
                   const positionSides = positions[symbol];
 
                   return Object.keys(positionSides).map((side) => {
+                    // If switched off, don't display inactive positions
+                    if (!showInactivePositions && isEmpty(positionSides[side].position_size)) {
+                      return null;
+                    }
+
                     return (
                       <PositionRow
                         key={`${symbol}_${side}`}
