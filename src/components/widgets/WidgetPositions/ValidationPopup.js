@@ -31,8 +31,12 @@ export default function ValidationPopup({ open, setOpen, onConfirm, mode, onClos
 
         <DialogActions>
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="space-between">
-            <Button onClick={onClose}>Cancel</Button>
-            <Button onClick={onConfirm}>Confirm</Button>
+            <Button variant="outlined" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button variant="contained" onClick={onConfirm}>
+              Confirm
+            </Button>
           </Stack>
         </DialogActions>
       </Dialog>
