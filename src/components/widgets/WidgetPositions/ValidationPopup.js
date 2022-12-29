@@ -6,7 +6,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import { Stack } from "@mui/material";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -30,14 +29,12 @@ export default function ValidationPopup({ open, setOpen, onConfirm, mode, onClos
         </DialogContent>
 
         <DialogActions>
-          <Stack sx={{ width: "100%" }} direction="row" justifyContent="space-between">
-            <Button variant="outlined" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button variant="contained" onClick={onConfirm}>
-              Confirm
-            </Button>
-          </Stack>
+          <Button variant="outlined" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button variant="contained" onClick={onConfirm}>
+            Confirm
+          </Button>
         </DialogActions>
       </Dialog>
     </>
