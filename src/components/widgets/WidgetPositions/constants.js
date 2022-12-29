@@ -8,7 +8,7 @@ export const MODES = {
     value: "GRACEFUL_STOP",
   },
   EXIT_ONLY: {
-    label: "EXIT",
+    label: "EXIT_ONLY",
     value: "EXIT_ONLY",
   },
   MANUAL: {
