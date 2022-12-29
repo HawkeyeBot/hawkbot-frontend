@@ -44,7 +44,7 @@ export default function GlobalInformations() {
 
         <Item
           site={{
-            name: "API Last / Max",
+            name: "API Weight Last / Max",
             value: `${api_weight?.last} / ${api_weight?.max}`,
           }}
         />
