@@ -7,40 +7,72 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import { MODES } from "./constants";
+import ValidationPopup from "./ValidationPopup";
 
 const REST_URL = "http://localhost:6969/setMode";
 
 export default function ModeSelector({ currentMode, symbol, position_side }) {
   const [mode, setMode] = useState(currentMode);
+  const [previousMode, setPreviousMode] = useState(currentMode);
+  const [openConfirmation, setOpenConfirmation] = useState(false);
+
   const setErrorRecoil = useSetRecoilState(errorAtom);
 
-  const handleChange = (event) => {
+  const setUpdatedModeOnServer = (requestedMode, previousMode) => {
     axios
       .post(REST_URL, {
         symbol,
-        mode: event.target.value,
+        mode: requestedMode,
         position_side,
-      })
-      .then((response) => {
-        if (response?.status === 200) {
-          setMode(event.target.value);
-        }
       })
       .catch((err) => {
         setErrorRecoil(err);
-        console.log(err);
+        setMode(previousMode);
       });
   };
 
+  const handleChange = (event) => {
+    const requestedMode = event.target.value;
+
+    setPreviousMode(mode);
+    setMode(requestedMode);
+
+    if (MODES[requestedMode]?.requiresValidation) {
+      setOpenConfirmation(true);
+    } else {
+      setUpdatedModeOnServer(requestedMode, previousMode);
+    }
+  };
+
+  const onConfirm = () => {
+    setUpdatedModeOnServer(mode, previousMode);
+    setOpenConfirmation(false);
+  };
+
+  const onCloseConfirmation = () => {
+    setOpenConfirmation(false);
+    setMode(previousMode);
+  };
+
   return (
-    <FormControl sx={{ minWidth: 125 }} size="small">
-      <Select value={MODES[mode]?.value} onChange={handleChange}>
-        {Object.values(MODES).map((m) => (
-          <MenuItem key={m.value} value={m.value}>
-            {m.label}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <>
+      <FormControl sx={{ minWidth: 125 }} size="small">
+        <Select value={MODES[mode]?.value} onChange={handleChange}>
+          {Object.values(MODES).map((m) => (
+            <MenuItem key={m.value} value={m.value}>
+              {m.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <ValidationPopup
+        open={openConfirmation}
+        setOpen={setOpenConfirmation}
+        onConfirm={onConfirm}
+        onClose={onCloseConfirmation}
+        mode={mode}
+      />
+    </>
   );
 }

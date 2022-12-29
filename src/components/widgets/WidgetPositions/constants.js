@@ -18,6 +18,7 @@ export const MODES = {
   PANIC: {
     label: "PANIC",
     value: "PANIC",
+    requiresValidation: true,
   },
   WIGGLE: {
     label: "WIGGLE",
