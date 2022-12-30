@@ -5,11 +5,18 @@ import { Grid, Paper, Typography } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { dataAtom } from "src/recoil/atoms";
 import { fTime } from "src/utils/formatTime";
+import { fShortenNumber } from "src/utils/formatNumber";
 
 // ----------------------------------------------------------------------
 
 export default function GlobalInformations() {
   const { resources, api_weight, version, status, refreshTime, balance } = useRecoilValue(dataAtom);
+
+  const sortedBalances = Object.entries(balance)
+    .sort(([, a], [, b]) => b - a)
+    .filter((b) => b[1] > 0);
+
+  const balanceToDisplay = sortedBalances.map((b) => `${fShortenNumber(b?.[1])} ${b?.[0]} `);
 
   return (
     <>
@@ -24,7 +31,7 @@ export default function GlobalInformations() {
         <Item
           site={{
             name: "Balance",
-            value: `${parseFloat(balance?.USDT).toFixed(2)} USDT`,
+            value: balanceToDisplay.slice(0, 2),
           }}
         />
 
