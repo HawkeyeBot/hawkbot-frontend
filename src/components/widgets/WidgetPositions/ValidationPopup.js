@@ -29,11 +29,11 @@ export default function ValidationPopup({ open, setOpen, onConfirm, mode, onClos
         </DialogContent>
 
         <DialogActions>
-          <Button variant="outlined" onClick={onClose}>
-            Cancel
-          </Button>
           <Button variant="contained" onClick={onConfirm}>
             Confirm
+          </Button>
+          <Button variant="outlined" onClick={onClose}>
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>
