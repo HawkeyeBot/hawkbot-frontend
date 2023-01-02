@@ -78,13 +78,7 @@ export default function ModeSelector({ currentMode, symbol, position_side }) {
         </Select>
       </FormControl>
 
-      <ValidationPopup
-        open={openConfirmation}
-        setOpen={setOpenConfirmation}
-        onConfirm={onConfirm}
-        onClose={onCloseConfirmation}
-        mode={mode}
-      />
+      <ValidationPopup open={openConfirmation} onConfirm={onConfirm} onClose={onCloseConfirmation} mode={mode} />
     </>
   );
 }

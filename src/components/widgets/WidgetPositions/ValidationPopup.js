@@ -11,7 +11,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ValidationPopup({ open, setOpen, onConfirm, mode, onClose }) {
+export default function ValidationPopup({ open, onConfirm, mode, onClose }) {
   return (
     <>
       <Dialog
