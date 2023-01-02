@@ -88,7 +88,7 @@ function BalanceItem({ balance }) {
     // if undefined, displays all the balances
 
     sortedBalances?.map(([symbol, amount], index) => {
-      return index >= limitNumber ? null : (
+      return index >= limitNumber || parseFloat(amount) === 0 ? null : (
         <Typography key={symbol} variant="subtitle2">
           {fCurrency(amount)} {symbol}
         </Typography>
