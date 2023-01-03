@@ -23,7 +23,6 @@ import { dataAtom } from "src/recoil/atoms";
 import ModeSelector from "./ModeSelector";
 import { cancelOrderOnServer } from "./services";
 import useNotification from "src/components/alerts/hook";
-import { fPercent } from "src/utils/formatNumber";
 
 const PositionRow = ({ symbol, side, positionSides }) => {
   const theme = useTheme();
