@@ -60,8 +60,8 @@ export default function WidgetPositions() {
                   <TableCell sx={{ minWidth: 40 }}>Position price</TableCell>
                   <TableCell sx={{ minWidth: 40 }}>Current price</TableCell>
                   <TableCell sx={{ minWidth: 40 }}>PnL</TableCell>
-                  <TableCell sx={{ minWidth: 40 }}>TP</TableCell>
-                  <TableCell sx={{ minWidth: 40 }}>DCA</TableCell>
+                  <TableCell sx={{ minWidth: 20 }}>TP</TableCell>
+                  <TableCell sx={{ minWidth: 20 }}>DCA</TableCell>
                   <TableCell sx={{ minWidth: 40 }}>Mode</TableCell>
                 </TableRow>
               </TableHead>
