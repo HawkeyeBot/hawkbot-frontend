@@ -62,7 +62,7 @@ const BTCprice = () => {
               {fCurrency(Math.round(lastJsonMessage?.data?.c))}
             </Typography>
 
-            <Typography color={lastJsonMessage?.data?.P > 0 ? "green" : "red"} variant="overline">
+            <Typography color={lastJsonMessage?.data?.P > 0 ? "#54D62C" : "error"} variant="overline">
               {fPercent(lastJsonMessage?.data?.P)}
             </Typography>
           </Grid>

@@ -23,6 +23,7 @@ import { dataAtom } from "src/recoil/atoms";
 import ModeSelector from "./ModeSelector";
 import { cancelOrderOnServer } from "./services";
 import useNotification from "src/components/alerts/hook";
+import { fPercent } from "src/utils/formatNumber";
 
 const PositionRow = ({ symbol, side, positionSides }) => {
   const theme = useTheme();
@@ -32,10 +33,12 @@ const PositionRow = ({ symbol, side, positionSides }) => {
   const { open_orders } = useRecoilValue(dataAtom);
   const [open, setOpen] = useState(false);
 
-  const { cost, entry_price, position_size, current_price, mode } = positionSides && positionSides[side];
+  const { cost, entry_price, position_size, current_price, mode, pnl } = positionSides && positionSides[side];
   const symbolOpenOrders = open_orders[symbol].filter((order) => order?.position_side === side);
   const dca_number = symbolOpenOrders.filter((order) => order?.order_type_identifier === "DCA").length;
   const tp_number = symbolOpenOrders.filter((order) => order?.order_type_identifier === "TP").length;
+
+  console.log(symbol, pnl);
 
   return (
     <>
@@ -58,6 +61,11 @@ const PositionRow = ({ symbol, side, positionSides }) => {
         <TableCell>{position_size}</TableCell>
         <TableCell>{entry_price}</TableCell>
         <TableCell>{current_price}</TableCell>
+        <TableCell>
+          <Typography color={pnl >= 0 ? "#54D62C" : "error"} variant="inherit">
+            {pnl}
+          </Typography>
+        </TableCell>
 
         <TableCell>
           <Label variant={isLight ? "ghost" : "filled"}>{tp_number}</Label>
