@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { errorAtom } from "src/recoil/atoms";
-import { useSetRecoilState } from "recoil";
+
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -9,39 +7,14 @@ import Select from "@mui/material/Select";
 import { MODES } from "./constants";
 import ValidationPopup from "./ValidationPopup";
 import useNotification from "src/components/alerts/hook";
-
-const REST_URL = "http://localhost:6969/setMode";
+import { setModeOnServer } from "./services";
 
 export default function ModeSelector({ currentMode, symbol, position_side }) {
   const [mode, setMode] = useState(currentMode);
   const [previousMode, setPreviousMode] = useState(currentMode);
   const [openConfirmation, setOpenConfirmation] = useState(false);
 
-  const setErrorRecoil = useSetRecoilState(errorAtom);
   const [sendNotification] = useNotification();
-
-  const setUpdatedModeOnServer = (requestedMode, previousMode) => {
-    axios
-      .post(REST_URL, {
-        symbol,
-        mode: requestedMode,
-        position_side,
-      })
-      .then((response) => {
-        sendNotification({
-          msg: `Your mode was correctly set to ${requestedMode} for ${symbol} ${position_side}`,
-          variant: "success",
-        });
-      })
-      .catch((err) => {
-        setErrorRecoil(err);
-        sendNotification({
-          msg: `Something wrong happened when setting ${symbol} ${position_side} to ${requestedMode}`,
-          variant: "error",
-        });
-        setMode(previousMode);
-      });
-  };
 
   const handleChange = (event) => {
     const requestedMode = event.target.value;
@@ -52,12 +25,12 @@ export default function ModeSelector({ currentMode, symbol, position_side }) {
     if (MODES[requestedMode]?.requiresValidation) {
       setOpenConfirmation(true);
     } else {
-      setUpdatedModeOnServer(requestedMode, previousMode);
+      setModeOnServer(requestedMode, previousMode, symbol, position_side, setMode, sendNotification);
     }
   };
 
   const onConfirm = () => {
-    setUpdatedModeOnServer(mode, previousMode);
+    setModeOnServer(mode, previousMode, symbol, position_side, setMode, sendNotification);
     setOpenConfirmation(false);
   };
 

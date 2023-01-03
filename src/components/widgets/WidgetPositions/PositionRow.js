@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 
 import {
   Box,
+  Button,
   Collapse,
   IconButton,
   Stack,
@@ -20,11 +21,14 @@ import { useRecoilValue } from "recoil";
 import Label from "src/components/Label";
 import { dataAtom } from "src/recoil/atoms";
 import ModeSelector from "./ModeSelector";
+import { cancelOrderOnServer } from "./services";
+import useNotification from "src/components/alerts/hook";
 
 const PositionRow = ({ symbol, side, positionSides }) => {
   const theme = useTheme();
   const isLight = theme.palette.mode === "light";
 
+  const [sendNotification] = useNotification();
   const { open_orders } = useRecoilValue(dataAtom);
   const [open, setOpen] = useState(false);
 
@@ -85,6 +89,7 @@ const PositionRow = ({ symbol, side, positionSides }) => {
                     <TableCell align="right">Quantity</TableCell>
                     <TableCell align="right">Type</TableCell>
                     <TableCell align="right">Side</TableCell>
+                    <TableCell align="right">Action</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -103,6 +108,11 @@ const PositionRow = ({ symbol, side, positionSides }) => {
                           <Typography color={side === "BUY" ? "#54D62C" : "error"} variant="subtitle2">
                             {side}
                           </Typography>
+                        </TableCell>
+                        <TableCell align="right">
+                          <Button variant="text" onClick={() => cancelOrderOnServer(symbol, id, sendNotification)}>
+                            Cancel
+                          </Button>
                         </TableCell>
                       </TableRow>
                     ))}
