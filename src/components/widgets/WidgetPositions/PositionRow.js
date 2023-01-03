@@ -54,10 +54,10 @@ const PositionRow = ({ symbol, side, positionSides }) => {
           </Stack>
         </TableCell>
 
-        <TableCell>{cost.slice(0, 5)}</TableCell>
+        <TableCell>{cost}</TableCell>
         <TableCell>{position_size}</TableCell>
-        <TableCell>{entry_price.slice(0, 5)}</TableCell>
-        <TableCell>{current_price.slice(0, 5)}</TableCell>
+        <TableCell>{entry_price}</TableCell>
+        <TableCell>{current_price}</TableCell>
 
         <TableCell>
           <Label variant={isLight ? "ghost" : "filled"}>{tp_number}</Label>
@@ -100,8 +100,8 @@ const PositionRow = ({ symbol, side, positionSides }) => {
                         <TableCell component="th" scope="row">
                           {order_type_identifier}
                         </TableCell>
-                        <TableCell>{cost.slice(0, 5)}</TableCell>
-                        <TableCell align="right">{price.slice(0, 5)}</TableCell>
+                        <TableCell>{cost}</TableCell>
+                        <TableCell align="right">{price}</TableCell>
                         <TableCell align="right">{quantity}</TableCell>
                         <TableCell align="right">{type}</TableCell>
                         <TableCell align="right">
