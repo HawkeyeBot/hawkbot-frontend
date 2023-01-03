@@ -23,7 +23,6 @@ import { dataAtom } from "src/recoil/atoms";
 import ModeSelector from "./ModeSelector";
 import { cancelOrderOnServer } from "./services";
 import useNotification from "src/components/alerts/hook";
-import { fPercent } from "src/utils/formatNumber";
 
 const PositionRow = ({ symbol, side, positionSides }) => {
   const theme = useTheme();
@@ -61,8 +60,8 @@ const PositionRow = ({ symbol, side, positionSides }) => {
         <TableCell>{entry_price}</TableCell>
         <TableCell>{current_price}</TableCell>
         <TableCell>
-          <Typography color={pnl_abs <= 0 ? "error" : "#54D62C"} variant="inherit">
-            {pnl_abs} {fPercent(pnl_pct)}
+          <Typography color={pnl_abs < 0 ? "error" : "#54D62C"} variant="inherit">
+            {pnl_abs} {pnl_pct}
           </Typography>
         </TableCell>
 
