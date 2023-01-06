@@ -29,9 +29,11 @@ export default function WidgetOrder() {
       <CardHeader title="Latest orders" />
       <CardContent>
         <Timeline>
-          {latest_orders.map((order, index) => (
-            <OrderItem key={order.id} order={order} isLast={index === latest_orders.length - 1} />
-          ))}
+          {latest_orders
+            .filter((order) => order?.status === "FILLED")
+            .map((order, index) => (
+              <OrderItem key={order.id} order={order} isLast={index === latest_orders.length - 1} />
+            ))}
         </Timeline>
       </CardContent>
     </Card>
