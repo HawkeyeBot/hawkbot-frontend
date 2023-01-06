@@ -25,6 +25,7 @@ const ClosePosition = ({ symbol, position_side, position_size }) => {
   const [openConfirmation, setOpenConfirmation] = useState(false);
 
   const isCloseDisabled = orderType === null;
+  const isIconDisabled = isEmpty(position_size);
 
   const handleChange = (event) => {
     setOrderType(event.target.value);
@@ -46,7 +47,8 @@ const ClosePosition = ({ symbol, position_side, position_size }) => {
         aria-label="close"
         size="small"
         onClick={() => setOpenConfirmation(true)}
-        disabled={isEmpty(position_size)}
+        disabled={isIconDisabled}
+        color={isIconDisabled ? "default" : "error"}
       >
         <CancelOutlinedIcon fontSize="small" />
       </IconButton>
