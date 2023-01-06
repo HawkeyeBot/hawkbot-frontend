@@ -3,7 +3,6 @@ import { useTheme } from "@mui/material/styles";
 
 import {
   Box,
-  Button,
   Collapse,
   IconButton,
   Stack,
@@ -16,6 +15,7 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 import { useRecoilValue } from "recoil";
 import Label from "src/components/Label";
@@ -93,7 +93,7 @@ const PositionRow = ({ symbol, side, positionSides }) => {
 
       {/* Table for the Open Orders */}
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 0 }}>
               <Table size="small" aria-label="purchases">
@@ -105,7 +105,7 @@ const PositionRow = ({ symbol, side, positionSides }) => {
                     <TableCell align="right">Quantity</TableCell>
                     <TableCell align="right">Type</TableCell>
                     <TableCell align="right">Side</TableCell>
-                    <TableCell align="right">Action</TableCell>
+                    <TableCell align="right">Cancel</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -126,9 +126,14 @@ const PositionRow = ({ symbol, side, positionSides }) => {
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
-                          <Button variant="text" onClick={() => cancelOrderOnServer(symbol, id, sendNotification)}>
-                            Cancel
-                          </Button>
+                          <IconButton
+                            aria-label="close"
+                            size="small"
+                            color="default"
+                            onClick={() => cancelOrderOnServer(symbol, id, sendNotification)}
+                          >
+                            <CancelOutlinedIcon fontSize="small" />
+                          </IconButton>
                         </TableCell>
                       </TableRow>
                     ))}
