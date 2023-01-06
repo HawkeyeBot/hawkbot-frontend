@@ -32,5 +32,5 @@ export const defaultSettings = {
   themeDirection: "ltr",
   themeColorPresets: "cyan",
   themeLayout: "horizontal",
-  themeStretch: true,
+  themeStretch: false,
 };
