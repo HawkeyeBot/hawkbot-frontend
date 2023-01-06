@@ -63,6 +63,7 @@ export default function WidgetPositions() {
                   <TableCell sx={{ minWidth: 20 }}>TP</TableCell>
                   <TableCell sx={{ minWidth: 20 }}>DCA</TableCell>
                   <TableCell sx={{ minWidth: 40 }}>Mode</TableCell>
+                  <TableCell sx={{ minWidth: 20 }}>Close</TableCell>
                 </TableRow>
               </TableHead>
 

@@ -23,6 +23,7 @@ import { dataAtom } from "src/recoil/atoms";
 import ModeSelector from "./ModeSelector";
 import { cancelOrderOnServer } from "./services";
 import useNotification from "src/components/alerts/hook";
+import ClosePosition from "./ClosePosition";
 
 const PositionRow = ({ symbol, side, positionSides }) => {
   const theme = useTheme();
@@ -84,6 +85,9 @@ const PositionRow = ({ symbol, side, positionSides }) => {
         </ClickableTableCell>
         <TableCell>
           <ModeSelector currentMode={mode} symbol={symbol} position_side={side} />
+        </TableCell>
+        <TableCell align="right">
+          <ClosePosition symbol={symbol} position_side={side} position_size={position_size} />
         </TableCell>
       </TableRow>
 
