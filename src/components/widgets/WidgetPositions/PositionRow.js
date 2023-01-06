@@ -99,7 +99,7 @@ const PositionRow = ({ symbol, side, positionSides }) => {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Open Order Type</TableCell>
+                    <TableCell>Order Type</TableCell>
                     <TableCell>Cost</TableCell>
                     <TableCell align="right">Price</TableCell>
                     <TableCell align="right">Quantity</TableCell>
