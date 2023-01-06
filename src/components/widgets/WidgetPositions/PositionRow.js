@@ -38,6 +38,12 @@ const PositionRow = ({ symbol, side, positionSides }) => {
   const dca_number = symbolOpenOrders.filter((order) => order?.order_type_identifier === "DCA").length;
   const tp_number = symbolOpenOrders.filter((order) => order?.order_type_identifier === "TP").length;
 
+  const ClickableTableCell = ({ children }) => (
+    <TableCell onClick={() => setOpen(!open)} sx={{ cursor: "pointer" }}>
+      {children}
+    </TableCell>
+  );
+
   return (
     <>
       <TableRow>
@@ -47,35 +53,35 @@ const PositionRow = ({ symbol, side, positionSides }) => {
           </IconButton>
         </TableCell>
 
-        <TableCell>
+        <ClickableTableCell>
           <Stack direction="row" alignItems="center" spacing={2}>
             <Typography color={side === "LONG" ? "#54D62C" : "error"} variant="subtitle2">
               {symbol}
             </Typography>
           </Stack>
-        </TableCell>
+        </ClickableTableCell>
 
-        <TableCell>{cost}</TableCell>
-        <TableCell>{position_size}</TableCell>
-        <TableCell>{entry_price}</TableCell>
-        <TableCell>{current_price}</TableCell>
-        <TableCell>
+        <ClickableTableCell>{cost}</ClickableTableCell>
+        <ClickableTableCell>{position_size}</ClickableTableCell>
+        <ClickableTableCell>{entry_price}</ClickableTableCell>
+        <ClickableTableCell>{current_price}</ClickableTableCell>
+        <ClickableTableCell>
           <Typography color={pnl_abs < 0 ? "error" : "#54D62C"} variant="inherit">
             {pnl_abs} {pnl_pct}
           </Typography>
-        </TableCell>
+        </ClickableTableCell>
 
-        <TableCell>
+        <ClickableTableCell>
           <Label variant={isLight ? "ghost" : "filled"}>{tp_number}</Label>
-        </TableCell>
-        <TableCell>
+        </ClickableTableCell>
+        <ClickableTableCell>
           <Label
             variant={isLight ? "ghost" : "filled"}
             color={dca_number > 1 || position_size < 1 ? "default" : dca_number === 1 ? "warning" : "error"}
           >
             {dca_number}
           </Label>
-        </TableCell>
+        </ClickableTableCell>
         <TableCell>
           <ModeSelector currentMode={mode} symbol={symbol} position_side={side} />
         </TableCell>
