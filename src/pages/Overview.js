@@ -21,7 +21,7 @@ export default function OverviewPage() {
             <WidgetPositions />
           </Grid>
 
-          <Grid item xs={6} md={6} lg={2.8}>
+          <Grid item xs={5} md={5} lg={2.6}>
             <WidgetOrder />
           </Grid>
         </Grid>

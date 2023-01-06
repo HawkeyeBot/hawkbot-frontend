@@ -9,7 +9,7 @@ import {
   TimelineConnector,
 } from "@mui/lab";
 // utils
-import { fDateTime } from "../../utils/formatTime";
+import { fTime } from "../../utils/formatTime";
 import { useRecoilValue } from "recoil";
 import { dataAtom } from "src/recoil/atoms";
 
@@ -23,6 +23,9 @@ export default function WidgetOrder() {
       sx={{
         "& .MuiTimelineItem-missingOppositeContent:before": {
           display: "none",
+        },
+        ".MuiTimelineItem-root": {
+          minHeight: 60,
         },
       }}
     >
@@ -58,22 +61,25 @@ function OrderItem({ order, isLast }) {
         />
         {isLast ? null : <TimelineConnector />}
       </TimelineSeparator>
+
       <TimelineContent>
         <Stack direction="row" spacing={0.5}>
-          <Typography display="inline" variant="subtitle2">
-            {order_type_identifier}
-          </Typography>
           <Typography display="inline" variant="subtitle2" color={position_side === "LONG" ? "#54D62C" : "error"}>
             {symbol}
           </Typography>
           <Typography display="inline" variant="subtitle2">
-            {quantity}
+            {order_type_identifier}
           </Typography>
         </Stack>
 
-        <Typography display="block" variant="caption" sx={{ color: "text.secondary" }}>
-          {fDateTime(event_time)}
-        </Typography>
+        <Stack direction="row" spacing={0.5}>
+          <Typography display="inline" variant="caption">
+            Size: {quantity} -
+          </Typography>
+          <Typography display="inline" variant="caption">
+            {fTime(event_time)}
+          </Typography>
+        </Stack>
       </TimelineContent>
     </TimelineItem>
   );
