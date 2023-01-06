@@ -59,7 +59,7 @@ const ClosePosition = ({ symbol, position_side, position_size }) => {
         aria-describedby="alert-dialog-slide-close-position"
       >
         <DialogTitle>Order type selection</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ pb: 0, mt: 2.4 }}>
           <DialogContentText id="alert-dialog-slide-description">
             Choose the order type for closing your {symbol} {position_side} position
           </DialogContentText>

@@ -22,7 +22,7 @@ export default function ValidationPopup({ open, onConfirm, mode, onClose }) {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>Warning regarding {mode} mode</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ pb: 0, mt: 2.4 }}>
           <DialogContentText id="alert-dialog-slide-description">
             This mode will sell your position with a MARKET order.
           </DialogContentText>
