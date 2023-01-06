@@ -6,7 +6,6 @@ import {
   Button,
   Collapse,
   IconButton,
-  Stack,
   Table,
   TableBody,
   TableCell,
@@ -24,6 +23,7 @@ import ModeSelector from "./ModeSelector";
 import { cancelOrderOnServer } from "./services";
 import useNotification from "src/components/alerts/hook";
 import ClosePosition from "./ClosePosition";
+import SymbolChart from "./SymbolChart";
 
 const PositionRow = ({ symbol, side, positionSides }) => {
   const theme = useTheme();
@@ -54,13 +54,9 @@ const PositionRow = ({ symbol, side, positionSides }) => {
           </IconButton>
         </TableCell>
 
-        <ClickableTableCell>
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <Typography color={side === "LONG" ? "#54D62C" : "error"} variant="subtitle2">
-              {symbol}
-            </Typography>
-          </Stack>
-        </ClickableTableCell>
+        <TableCell>
+          <SymbolChart symbol={symbol} side={side} />
+        </TableCell>
 
         <ClickableTableCell>{cost}</ClickableTableCell>
         <ClickableTableCell>{position_size}</ClickableTableCell>
