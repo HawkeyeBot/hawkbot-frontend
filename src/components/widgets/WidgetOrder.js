@@ -46,7 +46,7 @@ export default function WidgetOrder() {
 // ----------------------------------------------------------------------
 
 function OrderItem({ order, isLast }) {
-  const { event_time, order_type_identifier, position_side, quantity, symbol } = order;
+  const { event_time, order_type_identifier, position_side, quantity, symbol, price } = order;
 
   return (
     <TimelineItem>
@@ -74,7 +74,7 @@ function OrderItem({ order, isLast }) {
 
         <Stack direction="row" spacing={0.5}>
           <Typography display="inline" variant="caption">
-            Size: {quantity} -
+            {quantity} @ {price} -
           </Typography>
           <Typography display="inline" variant="caption">
             {fTime(event_time)}
