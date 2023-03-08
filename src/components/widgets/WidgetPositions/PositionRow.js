@@ -36,7 +36,9 @@ const PositionRow = ({ symbol, side, positionSides }) => {
   const { cost, entry_price, position_size, current_price, mode, pnl_abs, pnl_pct } =
     positionSides && positionSides[side];
   const symbolOpenOrders = open_orders[symbol].filter((order) => order?.position_side === side);
-  const dca_number = symbolOpenOrders.filter((order) => order?.order_type_identifier === "DCA").length;
+  const dca_number = symbolOpenOrders.filter(
+    (order) => order?.order_type_identifier === "DCA" || order?.order_type_identifier === "ENTRY"
+  ).length;
   const tp_number = symbolOpenOrders.filter((order) => order?.order_type_identifier === "TP").length;
 
   const ClickableTableCell = ({ children }) => (
