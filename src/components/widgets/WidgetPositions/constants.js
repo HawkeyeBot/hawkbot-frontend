@@ -11,6 +11,10 @@ export const MODES = {
     label: "EXIT_ONLY",
     value: "EXIT_ONLY",
   },
+  MANUAL_INITIAL_ENTRY: {
+    label: "MANUAL_INITIAL_ENTRY",
+    value: "MANUAL_INITIAL_ENTRY",
+  },
   MANUAL: {
     label: "MANUAL",
     value: "MANUAL",
