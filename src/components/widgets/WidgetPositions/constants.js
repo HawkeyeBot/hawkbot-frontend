@@ -19,6 +19,10 @@ export const MODES = {
     label: "MANUAL",
     value: "MANUAL",
   },
+  NO_ORDERS_ALLOWED: {
+    label: "NO_ORDERS_ALLOWED",
+    value: "NO_ORDERS_ALLOWED",
+  },
   PANIC: {
     label: "PANIC",
     value: "PANIC",
